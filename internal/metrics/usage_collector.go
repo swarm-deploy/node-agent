@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/volume"
 	"github.com/docker/docker/client"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -52,13 +53,18 @@ func (c *UsageCollector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 
-	for _, volume := range diskUsage.Volumes {
-		if volume == nil || volume.UsageData == nil {
+	for _, vol := range diskUsage.Volumes {
+		if vol == nil || vol.UsageData == nil || isAnonymousVolume(vol) {
 			continue
 		}
 
-		labels := []string{volume.Name, volume.Driver, volume.Scope}
-		size := float64(volume.UsageData.Size / megabyteDelimiter)
+		labels := []string{vol.Name, vol.Driver, vol.Scope}
+		size := float64(vol.UsageData.Size / megabyteDelimiter)
 		ch <- prometheus.MustNewConstMetric(c.usageMegabytes, prometheus.GaugeValue, size, labels...)
 	}
+}
+
+func isAnonymousVolume(vol *volume.Volume) bool {
+	_, hasLabel := vol.Labels["com.docker.volume.anonymous"]
+	return hasLabel
 }
