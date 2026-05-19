@@ -3,7 +3,9 @@ module github.com/swarm-deploy/node-agent
 go 1.26.2
 
 require (
+	github.com/artarts36/docker-cleanup v0.2.2
 	github.com/artarts36/go-entrypoint v0.3.0
+	github.com/caarlos0/env/v11 v11.4.1
 	github.com/docker/docker v28.3.3+incompatible
 	github.com/prometheus/client_golang v1.23.2
 )
@@ -11,12 +13,12 @@ require (
 replace github.com/docker/go-connections => github.com/docker/go-connections v0.6.0
 
 require (
+	github.com/Azure/go-ansiterm v0.0.0-20250102033503-faa5f7b0171c // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/containerd/errdefs v0.3.0 // indirect
 	github.com/containerd/errdefs/pkg v0.3.0 // indirect
-	github.com/containerd/log v0.1.0 // indirect
 	github.com/distribution/reference v0.6.0 // indirect
 	github.com/docker/go-connections v0.7.0 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
@@ -25,8 +27,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/moby/docker-image-spec v1.3.1 // indirect
-	github.com/moby/sys/atomicwriter v0.1.0 // indirect
-	github.com/moby/term v0.5.2 // indirect
+	github.com/moby/sys/sequential v0.6.0 // indirect
 	github.com/morikuni/aec v1.1.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
@@ -46,5 +47,4 @@ require (
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
-	gotest.tools/v3 v3.5.2 // indirect
 )

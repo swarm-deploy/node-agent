@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/client"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/swarm-deploy/node-agent/internal/dockerapi"
 )
 
 const (
@@ -17,13 +17,13 @@ const (
 
 // UsageCollector exports docker volume usage metrics for Prometheus.
 type UsageCollector struct {
-	docker *dockerapi.Client
+	docker *client.Client
 
 	usageMegabytes *prometheus.Desc
 }
 
 // NewVolumeUsageCollector creates Prometheus collector for docker volumes.
-func NewVolumeUsageCollector(namespace string, dockerClient *dockerapi.Client) *UsageCollector {
+func NewVolumeUsageCollector(namespace string, dockerClient *client.Client) *UsageCollector {
 	return &UsageCollector{
 		docker: dockerClient,
 		usageMegabytes: prometheus.NewDesc(

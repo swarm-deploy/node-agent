@@ -4,9 +4,8 @@ Node Agent for Docker Swarm nodes.
 
 ## Features
 
-- Prometheus metrics exporter over HTTP:
-  - `swarm_deploy_node_agent_volume_usage_megabytes`
-- Metrics endpoint: `:9000/metrics`
+- Clean old containers and images
+- Collect volume usage metrics
 
 Docker API connection settings are read from standard Docker environment variables
 (e.g. `DOCKER_HOST`, `DOCKER_TLS_VERIFY`, `DOCKER_CERT_PATH`).

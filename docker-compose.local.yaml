@@ -6,6 +6,7 @@ services:
     command: ["go", "run", "./cmd/node-agent"]
     environment:
       DOCKER_HOST: "unix:///var/run/docker.sock"
+      NODE_AGENT_CLEANER_INTERVAL: 15s
     volumes:
       - ./:/app
       - /var/run/docker.sock:/var/run/docker.sock:ro
