@@ -4,7 +4,7 @@ Node Agent for Docker Swarm nodes.
 
 ## Features
 
-- Clean old containers and images
+- Clean old containers and images (disable by env `NODE_AGENT_CLEANER_INTERVAL=0`)
 - Collect volume usage metrics
 
 Docker API connection settings are read from standard Docker environment variables
@@ -15,7 +15,7 @@ Docker API connection settings are read from standard Docker environment variabl
 ```yaml
 services:
   node-agent:
-    image: swarmdeployorg/node-agent:v0.1.0
+    image: swarmdeployorg/node-agent:0.1.0
     environment:
       DOCKER_HOST: "unix:///var/run/docker.sock"
     volumes:
@@ -23,4 +23,6 @@ services:
     restart: unless-stopped
     deploy:
       mode: global
+      labels:
+        - prometheus.port=9000
 ```
