@@ -1,0 +1,14 @@
+services:
+  node-agent:
+    image: golang:1.26.2
+    container_name: swarm-deploy-node-agent
+    working_dir: /app
+    command: ["go", "run", "./cmd/node-agent"]
+    environment:
+      DOCKER_HOST: "unix:///var/run/docker.sock"
+    volumes:
+      - ./:/app
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - "9090:9000"
+    restart: unless-stopped
